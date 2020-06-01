@@ -57,9 +57,32 @@ namespace DiceCalculatorTools
             {
                 List<RollResult> localResults = new List<RollResult>();
 
-                if (roll.Result >= modifier.Threshold && (modifier.MaxOperations < 0 || (modifier.MaxOperations > currentOperationCount)))
+                if (roll.Result >= modifier.Threshold)
                 {
-                    if (modifier.)
+                    roll.Exploded = true;
+                    localResults.AddRange(Roll(modifier.AdditionalCount, modifier.AdditionalType));
+
+                    foreach (RollResult localRoll in localResults)
+                        localRoll.FromExplode = true;
+
+                    results.AddRange(localResults);
+
+                    if (modifier.Recursive)
+                    {
+                        if (modifier.MaxOperations > 0)
+                        {
+                            if (modifier.MaxOperations > currentOperationCount)
+                            {
+                                ++currentOperationCount;
+
+                                results.AddRange(Explode(localResults, modifier, currentOperationCount));
+                            }
+                        }
+                        else 
+                        {
+                            results.AddRange(Explode(localResults, modifier));
+                        }
+                    }
                 }
             }
 

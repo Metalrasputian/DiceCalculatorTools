@@ -35,13 +35,13 @@ namespace DiceCalculatorTools
         {
         }
 
-        public RollParameter(int count, int dieType, ModifierType priority, bool reroll, bool explode, )
+        public RollParameter(int count, int dieType, ModifierType priority, bool reroll, bool explode)
             :this (count, dieType, priority)
         {
             if (reroll)
-                RollModifiers.Add(new RerollModifier(dieType));
+                RollModifiers.Add(new RerollModifier(dieType, dieType));
             if (explode)
-                RollModifiers.Add(new ExplodeModifier(dieType));
+                RollModifiers.Add(new ExplodeModifier(dieType, dieType));
         }
     }
 }

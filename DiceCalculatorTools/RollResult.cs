@@ -25,7 +25,14 @@ namespace DiceCalculatorTools
 
         public override string ToString()
         {
-            return "d" + RollParam.DieType + ": " + Result;
+            string output = "";
+
+            if (Exploded)
+                output += "d!";
+            else
+                output += "d";
+
+            return output + RollParam.DieType + ": " + Result;
         }
     }
 }

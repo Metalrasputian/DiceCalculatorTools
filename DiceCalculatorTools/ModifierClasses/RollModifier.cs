@@ -8,15 +8,17 @@ namespace DiceCalculatorTools
     {
         public int Threshold;
         public int AdditionalCount;
+        public int AdditionalType;
         public DiceCompare CompareType;
         public bool Recursive;
         public int MaxOperations;
         protected ModifierType ModType;
 
-        public RollModifier(int threshold, DiceCompare compareType, bool recursive, int additionalCount = 1, int maxOperations = 0)
+        public RollModifier(int threshold, int additionalType, DiceCompare compareType, int additionalCount = 1,  bool recursive = false,  int maxOperations = 0)
         {
             Threshold = threshold;
             AdditionalCount = additionalCount;
+            AdditionalType = additionalType;
             CompareType = compareType;
             MaxOperations = maxOperations;
             Recursive = recursive;

@@ -6,14 +6,14 @@ namespace DiceCalculatorTools
 {
     public class RollResult
     {
-        public RollParameter RollParam;
+        public DicePool RollParam;
         public int Result;
         public bool Exploded;
         public bool FromExplode;
         public bool Rerolled;
         public bool FromReroll;
 
-        public RollResult(int result, RollParameter rollParam, bool exploded = false, bool fromExplode = false, bool rerolled = false, bool fromReroll = false)
+        public RollResult(int result, DicePool rollParam, bool exploded = false, bool fromExplode = false, bool rerolled = false, bool fromReroll = false)
         {
             Result = result;
             RollParam = rollParam;

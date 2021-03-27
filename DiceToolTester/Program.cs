@@ -12,7 +12,7 @@ namespace DiceToolTester
 
             //List<RollParameter> rollParams = new List<RollParameter>() { new RollParameter(3, 6, ModifierType.Explode, new ExplodeModifier(6, 6)), new RollParameter(4, 8) };
 
-            RollParameter rollParam = new RollParameter(6, 6, ModifierType.Explode, new ExplodeModifier(6, 6, 2));
+            DicePool rollParam = new DicePool(6, 6, ModifierType.Explode, new ExplodeModifier(6, 6, 2));
 
             List<RollResult> rolls = dh.Roll(rollParam);
 

@@ -17,8 +17,13 @@ namespace DiceCalculatorTools
 
     public class DiceRoller
     {
+        
         #region Standard Roll
 
+        //<summary>Rolls a supplied number of indicated dice
+        //</summary>
+        //<param name="count">The number of dice being rolled</param>
+        //<param name="dieType">The die type being rolled, I.E. 20 for a d20</param>
         public List<RollResult> Roll(int count, int dieType)
         {
             List<RollResult> results = new List<RollResult>();
@@ -26,21 +31,28 @@ namespace DiceCalculatorTools
             var rnd = new Random();
 
             for (int i = 0; i < count; ++i)
-                results.Add(new RollResult(rnd.Next(1, dieType + 1), new RollParameter(count, dieType)));
+                results.Add(new RollResult(rnd.Next(1, dieType + 1), new DicePool(count, dieType)));
 
             return results;
         }
 
-        public List<RollResult> Roll(RollParameter rollParameters)
+        //<summary>Rolls a supplied pool of dice
+        //</summary>
+        //<param name="dicePool">The pool of dice to be rolled</param>
+        public List<RollResult> Roll(DicePool dicePool)
         {
-            return Roll(rollParameters.Count, rollParameters.DieType);
+            return Roll(dicePool.Count, dicePool.DieType);
         }
 
-        public List<RollResult> Roll(IEnumerable<RollParameter> rollParameterCollection)
+
+        //<summary>Rolls a supplied list of dice pools
+        //</summary>
+        //<param name="dicePools">The list of pools of dice to be rolled</param>
+        public List<RollResult> Roll(IEnumerable<DicePool> dicePools)
         {
             List<RollResult> results = new List<RollResult>();
 
-            foreach (RollParameter rollParam in rollParameterCollection)
+            foreach (DicePool rollParam in dicePools)
                 results.AddRange(Roll(rollParam));
 
             return results;
@@ -48,6 +60,7 @@ namespace DiceCalculatorTools
         #endregion
 
         #region Exploding Roll
+
 
         public List<RollResult> Explode(List<RollResult> incomingRollResults, ExplodeModifier modifier, int currentOperationCount = 0)
         {

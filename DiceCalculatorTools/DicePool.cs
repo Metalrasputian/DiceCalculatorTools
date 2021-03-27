@@ -4,38 +4,38 @@ using System.Text;
 
 namespace DiceCalculatorTools
 {
-    public class RollParameter
+    public class DicePool
     {
         public int Count;
         public int DieType;
         public ModifierType ModifierPriority;
         public List<RollModifier> RollModifiers;
 
-        public RollParameter(int count, int dieType)
+        public DicePool(int count, int dieType)
         {
             Count = count;
             DieType = dieType;
             RollModifiers = new List<RollModifier>();
         }
 
-        public RollParameter(int count, int dieType, ModifierType priority)
+        public DicePool(int count, int dieType, ModifierType priority)
             : this(count, dieType)
         {
             ModifierPriority = priority;
         }
 
-        public RollParameter(int count, int dieType, ModifierType priority, List<RollModifier> rollModifiers)
+        public DicePool(int count, int dieType, ModifierType priority, List<RollModifier> rollModifiers)
             : this(count, dieType, priority)
         {
             RollModifiers.AddRange(rollModifiers);
         }
 
-        public RollParameter(int count, int dieType, ModifierType priority, RollModifier rollModifier)
+        public DicePool(int count, int dieType, ModifierType priority, RollModifier rollModifier)
             : this(count, dieType, priority, new List<RollModifier>() { rollModifier })
         {
         }
 
-        public RollParameter(int count, int dieType, ModifierType priority, bool reroll, bool explode)
+        public DicePool(int count, int dieType, ModifierType priority, bool reroll, bool explode)
             :this (count, dieType, priority)
         {
             if (reroll)
